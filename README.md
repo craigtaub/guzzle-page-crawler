@@ -2,13 +2,16 @@
 #Sainsburys product crawler
 
 Setup
+
     make clean
     make install
 
 Run
+
     php scripts/run.php
 
 Test
+
     make test
 
 Todo
