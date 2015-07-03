@@ -4,33 +4,26 @@ namespace Sainsburys\Tests;
 
 class DatasourceTest extends \PHPUnit_Framework_TestCase {
 
-    private $_datasource;
-
-    public function setUp() {
-        parent::setUp();
-        $this->_datasource = new \Sainsburys\Datasource();
-    }
-
     public function testClient() {
-        $client = $this->_datasource->getClient();
+        $datasource = new \Sainsburys\Datasource();
+        $client = $datasource->getClient();
 
         $this->assertInstanceOf('\Guzzle\Http\Client', $client);
         $this->assertEquals('http://www.sainsburys.co.uk', $client->getBaseUrl());
     }
 
     public function testRequestAll() {
-
         $client = $this->getMockBuilder('\Guzzle\Http\Client')
-                    ->setMethods(array('get'))
-                     ->getMock();
+            ->setMethods(array('get'))
+            ->getMock();
         $client->method('get')
-             ->willReturn(new MockRequest());
+            ->willReturn(new MockRequest());
 
         $datasource = $this->getMockBuilder('\Sainsburys\Datasource')
-                    ->setMethods(array('getClient'))
-                    ->getMock();
+            ->setMethods(array('getClient'))
+            ->getMock();
         $datasource->method('getClient')
-             ->willReturn($client);
+            ->willReturn($client);
 
         $response = $datasource->requestAll();
         $this->assertEquals($response, '<html>body</html>');
@@ -40,18 +33,18 @@ class DatasourceTest extends \PHPUnit_Framework_TestCase {
         $fakeUrl = 'someUrl';
 
         $client = $this->getMockBuilder('\Guzzle\Http\Client')
-                    ->setMethods(array('get'))
-                     ->getMock();
+            ->setMethods(array('get'))
+            ->getMock();
         $client->expects($this->once())
             ->method('get')
-            ->with($this->equalTo($fakeUrl))
-             ->willReturn(new MockRequest());
+            ->with($this->equalTo($fakeUrl)) // testing argument
+            ->willReturn(new MockRequest());
 
         $datasource = $this->getMockBuilder('\Sainsburys\Datasource')
-                    ->setMethods(array('getClient'))
-                    ->getMock();
+            ->setMethods(array('getClient'))
+            ->getMock();
         $datasource->method('getClient')
-             ->willReturn($client);
+            ->willReturn($client);
 
         $response = $datasource->requestItem($fakeUrl);
         $this->assertEquals($response, '<html>body</html>');

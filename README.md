@@ -21,3 +21,4 @@ Todo
     - For now Controller (integration) tests make actual request to data, this should be swapped for dynamic mechanism building fixtures.
     - Build Fake and Fail HTTP clients for proper request testing.
     - Add PHPCS dependencies and make block.
+    - Add Travis job for `build status` and `test coverage` badges.
