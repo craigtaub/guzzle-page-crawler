@@ -1,0 +1,20 @@
+{
+	"name": "craigtaub/sainsburys",
+    "description": "My sainsburys crawler",
+    "require": {
+        "symfony/css-selector": "~2.5",
+        "symfony/dom-crawler": "~2.5",
+        "phpunit/phpunit": "4.7.*",
+        "guzzle/guzzle": "~3.9"
+    },
+    "config": {
+    	"autoloader-suffix": "Sainsburys",
+    	"vendor-dir": "vendor"
+    },
+   "autoload": {
+        "psr-0": {
+            "Sainsburys": "src/",
+            "Sainsburys\\Tests": "tests/"
+        }
+    }
+}
